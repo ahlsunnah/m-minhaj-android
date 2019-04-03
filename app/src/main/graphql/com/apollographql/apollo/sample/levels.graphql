@@ -1,0 +1,47 @@
+query myTracks($locale: String!) {
+  allTracks {
+    edges {
+      node {
+        id
+        order
+        slug
+        soon
+        translations(locale: $locale) {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
+        courseSet {
+          edges {
+            node {
+              id
+              slug
+              translations(locale: $locale) {
+                edges {
+                  node {
+                    id
+                    title
+                  }
+                }
+              }
+              topic {
+                id
+                translations(locale: $locale) {
+                  edges {
+                    node {
+                      id
+                      title
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
