@@ -1,39 +1,92 @@
 query myTracks($locale: String!) {
-  allTracks {
-    edges {
-      node {
-        id
-        order
-        slug
-        soon
-        translations(locale: $locale) {
-          edges {
-            node {
-              id
-              title
+    allTracks {
+      edges {
+        node {
+          id
+          order
+          slug
+          soon
+          translations(locale: $locale) {
+            edges {
+              node {
+                id
+                description
+                locale
+                title
+              }
             }
           }
-        }
-        courseSet {
-          edges {
-            node {
-              id
-              slug
-              translations(locale: $locale) {
-                edges {
-                  node {
-                    id
-                    title
+          courseSet {
+            edges {
+              node {
+                id
+                topic {
+                  id
+                  color
+                  level
+                  order
+                  slug
+                  translations {
+                    edges {
+                      node {
+                        id
+                        locale
+                        title
+                      }
+                    }
                   }
                 }
-              }
-              topic {
-                id
+                level
+                order
+                slug
                 translations(locale: $locale) {
                   edges {
                     node {
                       id
+                      description
+                      locale
                       title
+                    }
+                  }
+                }
+                chapterSet {
+                  edges {
+                    node {
+                      id
+                      audio
+                      duration
+                      order
+                      slug
+                      translations(locale: $locale) {
+                        edges {
+                          node {
+                            id
+                            locale
+                            title
+                            transcription
+                            video
+                            vocabulary
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                quizSet {
+                  edges {
+                    node {
+                      id
+                      difficulty
+                      type
+                      translations(locale: $locale) {
+                        edges {
+                          node {
+                            id
+                            data
+                            locale
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -44,4 +97,4 @@ query myTracks($locale: String!) {
       }
     }
   }
-}
+
