@@ -4,4 +4,16 @@
     <string name="level">Level</string>
     <string name="next">NEXT</string>
     <string name="language">اللغة</string>
+    <string name="choose_language">Choose Language</string>
+    <string name="arabic">العربية</string>
+    <string name="french">Français</string>
+    <string name="english">English</string>
+    <string name="initiating_data_for_first_time">Initiating data for first time…</string>
+    <string name="retry">Retry</string>
+    <string name="check_internet_connection">Check Internet Connection</string>
+    <string name="first_ayah">\"من يرد الله به خيرا يفقهه في الدين.\"</string>
+    <string name="intro_one_info">فهذه جملة من المحاضرات الموجزة في التعريف بدين الإسلام العظيم، وبيان خصائصه ومحاسنه، وذكر ما يتعلق بعقيدة التوحيد، وأقسام التوحيد، وكذا ما يتعلق بنبي الإسلام محمد ﷺ، وذكر جملة من الأدلة على صدق رسالته، وغير ذلك من أمور هذا الدين العظيم.</string>
+    <string name="finish">إنهاء</string>
+    <string name="intro_two_info">في هذا الموقع تستطيع أن تتعلم أصول دينك بطريقة سهلة وميسرة..</string>
+    <string name="intro_third_info">صنعنا مجموعة من التمارين، تستطيع من خلالها معرفة مستواك، وهذه التمارين مناسبة لجميع الأعمار..</string>
 </resources>

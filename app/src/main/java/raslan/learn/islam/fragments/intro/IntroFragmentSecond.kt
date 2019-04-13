@@ -11,21 +11,20 @@ import com.stepstone.stepper.VerificationError
 
 import raslan.learn.islam.R
 
+
 /**
  * A simple [Fragment] subclass.
  *
  */
-class IntroFragmentOne : Fragment(), Step {
-
+class IntroFragmentSecond : Fragment(), Step {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.intro_fragment_one, container, false)
+        return inflater.inflate(R.layout.fragment_intro_fragment_second, container, false)
     }
-
 
     override fun onSelected() {
     }

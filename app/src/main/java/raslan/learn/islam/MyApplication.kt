@@ -9,9 +9,21 @@ import com.apollographql.apollo.cache.normalized.CacheKeyResolver
 import com.apollographql.apollo.cache.normalized.sql.ApolloSqlHelper
 import com.apollographql.apollo.cache.normalized.sql.SqlNormalizedCacheFactory
 import okhttp3.OkHttpClient
+import raslan.learn.islam.util.AppPreference
+import android.provider.Settings.System.DATE_FORMAT
+import com.apollographql.apollo.response.CustomTypeValue
+import com.apollographql.apollo.response.CustomTypeAdapter
+import com.apollographql.apollo.sample.type.CustomType
+import raslan.learn.islam.model.QuizData
+import java.text.ParseException
+
 
 class MyApplication : Application() {
 
+    override fun onCreate() {
+        super.onCreate()
+        AppPreference.init(this)
+    }
     private val baseUrl = "https://learn-islam-api.herokuapp.com/graphql"
     val apolloClient: ApolloClient by lazy {
         val okHttpClient = OkHttpClient.Builder()
@@ -40,9 +52,25 @@ class MyApplication : Application() {
             }
         }
 
+        val dateCustomTypeAdapter = object : CustomTypeAdapter<String> {
+            override fun decode(value: CustomTypeValue<*>): String {
+                try {
+                    return value.value as String
+                } catch (e: ParseException) {
+                    throw RuntimeException(e)
+                }
+
+            }
+
+            override fun encode(value: String): CustomTypeValue<*> {
+                return CustomTypeValue.GraphQLString(value)
+            }
+        }
+
         ApolloClient.builder()
             .serverUrl(baseUrl)
             .normalizedCache(sqlNormalizedCacheFactory, cacheKeyResolver)
+            .addCustomTypeAdapter(CustomType.JSONSTRING, dateCustomTypeAdapter)
             .okHttpClient(okHttpClient)
             .build()
     }

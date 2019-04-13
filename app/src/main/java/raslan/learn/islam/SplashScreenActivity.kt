@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.view.View
-import kotlinx.android.synthetic.main.activity_splash_screen.*
+import raslan.learn.islam.activities.LanguageActivity
+import raslan.learn.islam.util.AppPreference
 
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -16,7 +16,14 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         Handler().postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+
+            var intent : Intent? = null
+
+            intent = if (AppPreference.firstRun)
+                Intent(Intent(this, LanguageActivity::class.java))
+            else Intent(Intent(this, MainActivity::class.java))
+
+            startActivity(intent)
             finish()
         }, 100)
     }

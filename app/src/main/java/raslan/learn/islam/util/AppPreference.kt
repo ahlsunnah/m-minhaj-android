@@ -8,7 +8,7 @@ object AppPreference {
     private const val MODE = Context.MODE_PRIVATE
     private lateinit var preferences: SharedPreferences
     // list of app specific preferences
-    private val IS_FIRST_RUN_PREF = Pair("is_first_run", false)
+    private val IS_FIRST_RUN_PREF = Pair("is_first_run", true)
     private val CURRENT_LANGUAGE = "current_language"
 
     fun init(context: Context) {

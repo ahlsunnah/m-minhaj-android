@@ -7,33 +7,42 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
         tools:context=".activities.IntroductionActivity">
 
-        <fragment
-            android:id="@+id/main_nav_fragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/intro_nav" />
 
         <com.stepstone.stepper.StepperLayout
             android:id="@+id/stepper"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/next"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"></com.stepstone.stepper.StepperLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:ms_showBottomNavigation="false"
+            app:ms_bottomNavigationBackground="@android:color/transparent"
+            app:ms_stepperType="dots" />
+
+        <com.rd.PageIndicatorView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/indicator"
+            app:piv_count="3"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:layout_constraintBottom_toTopOf="@id/next"
+            app:piv_animationType="slide"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/next"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_25sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:shadowRadius="20"
             android:text="@string/next"
+            android:textStyle="bold"
             app:cornerRadius="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

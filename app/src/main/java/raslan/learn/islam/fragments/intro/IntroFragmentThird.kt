@@ -15,7 +15,7 @@ import raslan.learn.islam.R
  * A simple [Fragment] subclass.
  *
  */
-class IntroFragmentOne : Fragment(), Step {
+class IntroFragmentThird : Fragment(), Step {
 
 
     override fun onCreateView(
@@ -23,18 +23,17 @@ class IntroFragmentOne : Fragment(), Step {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.intro_fragment_one, container, false)
-    }
-
-
-    override fun onSelected() {
+        return inflater.inflate(R.layout.fragment_intro_fragment_third, container, false)
     }
 
     override fun verifyStep(): VerificationError? {
-
         return null
     }
 
     override fun onError(error: VerificationError) {
     }
+
+    override fun onSelected() {
+    }
+
 }
