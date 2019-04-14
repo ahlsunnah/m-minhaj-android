@@ -16,4 +16,8 @@
     <string name="finish">إنهاء</string>
     <string name="intro_two_info">في هذا الموقع تستطيع أن تتعلم أصول دينك بطريقة سهلة وميسرة..</string>
     <string name="intro_third_info">صنعنا مجموعة من التمارين، تستطيع من خلالها معرفة مستواك، وهذه التمارين مناسبة لجميع الأعمار..</string>
+    <string name="settings">الإعدادات</string>
+    <string name="about">عنّا</string>
+    <string name="soon">قريبا</string>
+    <string name="start">ابدأ</string>
 </resources>

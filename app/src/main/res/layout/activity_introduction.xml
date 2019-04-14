@@ -11,17 +11,14 @@
         tools:context=".activities.IntroductionActivity">
 
 
-        <com.stepstone.stepper.StepperLayout
-            android:id="@+id/stepper"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/next"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:ms_showBottomNavigation="false"
-            app:ms_bottomNavigationBackground="@android:color/transparent"
-            app:ms_stepperType="dots" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.rd.PageIndicatorView
             android:layout_width="wrap_content"

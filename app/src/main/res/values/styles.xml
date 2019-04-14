@@ -32,6 +32,7 @@
         <item name="textAppearanceCaption">@style/TextAppearance.MaterialComponents.Caption</item>
         <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
         <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
+        <item name="android:fontFamily">@font/font</item>
 
 
         <!--<item name="spinnerStyle">@style/Widget.App.Spinner</item>-->
@@ -65,26 +66,28 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
 
     <style name="MyButtonStyle" parent="Widget.MaterialComponents.Button">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">12sp</item>
         <!--<item name="android:fontFamily">@font/liber_regular</item>-->
         <!--<item name="android:textColor">@color/but_text_color</item>-->
         <item name="android:elevation">8dp</item>
-        <item name="cornerRadius">21dp</item>
+        <item name="cornerRadius">15dp</item>
+        <item name="backgroundTint">@color/button_bg_selector</item>
+        <item name="android:textColor">@color/button_selector</item>
+
         <!--<item name="android:shadowColor">@color/button_shadow</item>-->
         <item name="android:windowElevation">8dp</item>
-        <!--<item company_name="android:shadowRadius">5</item>-->
-        <!--<item company_name="android:shadowDx">5</item>-->
-        <!--<item company_name="android:shadowDy">5</item>-->
-        <!--<item name="android:colorButtonNormal">@color/de_active_button_color</item>-->
+
+
+        <!--<item name="android:colorButtonNormal">@color/design_default_color_primary_dark</item>-->
 
     </style>
 
 
     <style name="BoldTextView" parent="android:Widget.TextView">
-
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="NormalTextView" parent="android:Widget.TextView">
-
+        <item name="android:includeFontPadding">false</item>
     </style>
 </resources>

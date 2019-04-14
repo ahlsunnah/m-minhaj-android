@@ -12,9 +12,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import androidx.work.await
-import com.stepstone.stepper.StepperLayout
-import com.stepstone.stepper.VerificationError
 import raslan.learn.islam.R
 import raslan.learn.islam.databinding.ActivityLanguageBinding
 import raslan.learn.islam.util.Utils
@@ -24,7 +21,6 @@ class LanguageActivity : AppCompatActivity(), View.OnClickListener {
 
 
     var binder: ActivityLanguageBinding? = null
-    val stepperLayout : StepperLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +70,7 @@ class LanguageActivity : AppCompatActivity(), View.OnClickListener {
 
                 if (code == ResponseWorker.SUCCESS) {
                     startActivity(Intent(this, IntroductionActivity::class.java))
+                    finish()
                 } else {
 
                 }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import raslan.learn.islam.activities.LanguageActivity
 import raslan.learn.islam.util.AppPreference
+import raslan.learn.islam.util.Utils
 
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -17,8 +18,9 @@ class SplashScreenActivity : AppCompatActivity() {
 
         Handler().postDelayed({
 
-            var intent : Intent? = null
+            var intent : Intent?
 
+            Utils.changeLanguage(this, AppPreference.lang)
             intent = if (AppPreference.firstRun)
                 Intent(Intent(this, LanguageActivity::class.java))
             else Intent(Intent(this, MainActivity::class.java))

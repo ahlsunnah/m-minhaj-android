@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="@string/intro_two_info"
         style="@style/NormalTextView"
-        android:textSize="@dimen/_25sdp"
+        android:textSize="25sp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:gravity="center"

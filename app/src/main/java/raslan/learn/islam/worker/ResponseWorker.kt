@@ -64,7 +64,9 @@ class ResponseWorker(context: Context, workerParams: WorkerParameters) : Corouti
 
             Result.success(data.build())
         } catch (ex: Exception) {
-            Log.e(TAG, "Error seeding database", ex)
+            Log.e(TAG, "Error ", ex)
+            data.putInt(RESULT_CODE, FAIL)
+            data.putString(RESULT_MESSAGE, ex.localizedMessage)
             Result.failure(data.build())
         }
 

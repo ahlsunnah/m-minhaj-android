@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.stepstone.stepper.Step
-import com.stepstone.stepper.VerificationError
 
 import raslan.learn.islam.R
 
@@ -16,7 +14,7 @@ import raslan.learn.islam.R
  * A simple [Fragment] subclass.
  *
  */
-class IntroFragmentSecond : Fragment(), Step {
+class IntroFragmentSecond : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,14 +24,5 @@ class IntroFragmentSecond : Fragment(), Step {
         return inflater.inflate(R.layout.fragment_intro_fragment_second, container, false)
     }
 
-    override fun onSelected() {
-    }
 
-    override fun verifyStep(): VerificationError? {
-
-        return null
-    }
-
-    override fun onError(error: VerificationError) {
-    }
 }

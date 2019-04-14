@@ -6,50 +6,60 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
-import com.stepstone.stepper.StepperLayout
-import com.stepstone.stepper.VerificationError
+import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_introduction.*
 import raslan.learn.islam.MainActivity
 import raslan.learn.islam.R
 import raslan.learn.islam.adapters.IntroStepperAdapter
 import raslan.learn.islam.databinding.ActivityIntroductionBinding
+import raslan.learn.islam.fragments.intro.IntroFragmentOne
+import raslan.learn.islam.fragments.intro.IntroFragmentSecond
+import raslan.learn.islam.fragments.intro.IntroFragmentThird
 import raslan.learn.islam.util.AppPreference
 
-class IntroductionActivity : AppCompatActivity() , StepperLayout.StepperListener {
+class IntroductionActivity : AppCompatActivity() {
 
-    var binder : ActivityIntroductionBinding? = null
-    override fun onCreate(savedInstanceState: Bundle?)  {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding : ActivityIntroductionBinding = DataBindingUtil.setContentView(this,
-                R.layout.activity_introduction)
+        val binding: ActivityIntroductionBinding = DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_introduction
+        )
 
-        binding.stepper.adapter = IntroStepperAdapter(supportFragmentManager, this)
-        binding.stepper.setListener(this)
-        binder = binding
+        val adapter = IntroStepperAdapter(
+            supportFragmentManager, listOf(
+                IntroFragmentOne(), IntroFragmentSecond()
+                , IntroFragmentThird()
+            )
+        )
+
         binding.next.setOnClickListener {
-            binding.stepper.OnNextClickedCallback()
-            binding.stepper.proceed()
+            if (pager.currentItem + 1 >= adapter.fragmentList.size) {
+                startActivity(Intent(this, MainActivity::class.java))
+                AppPreference.firstRun = false
+                finish()
+            } else
+                pager.currentItem = pager.currentItem + 1
         }
 
 
+
+        binding.pager.adapter = adapter
+        binding.pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {}
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+            override fun onPageSelected(position: Int) {
+                binding.indicator.selection = position
+                if (position == 2)
+                    binding.next.text = getString(R.string.finish)
+                else binding.next.text = getString(R.string.next)
+            }
+
+        })
+
+
     }
 
 
-    override fun onStepSelected(newStepPosition: Int) {
-        binder?.indicator!!.selection = newStepPosition
-        if (newStepPosition == 2)
-            binder!!.next.text= getString(R.string.finish)
-
-    }
-
-    override fun onError(verificationError: VerificationError?) {
-    }
-
-    override fun onReturn() {
-    }
-
-    override fun onCompleted(completeButton: View?) {
-        startActivity(Intent(this, MainActivity::class.java))
-        AppPreference.firstRun = false
-    }
 }
