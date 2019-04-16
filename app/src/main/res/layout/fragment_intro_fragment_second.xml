@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="@dimen/_130sdp"
         android:layout_height="@dimen/_130sdp"
-        android:layout_marginBottom="@dimen/_150sdp"
+        android:layout_marginBottom="@dimen/_50sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

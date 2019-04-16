@@ -26,7 +26,7 @@ query myTracks($locale: String!) {
                   level
                   order
                   slug
-                  translations {
+                  translations (locale: $locale) {
                     edges {
                       node {
                         id

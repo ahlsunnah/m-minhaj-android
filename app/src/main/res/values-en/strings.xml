@@ -19,4 +19,6 @@
     <string name="about">About</string>
     <string name="soon">Soon</string>
     <string name="start">ابدأ</string>
+    <string name="easy_level">مستوى سهل</string>
+    <string name="lessons_list">قائمة الدروس</string>
 </resources>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <!--<data>-->
+        <!--<variable-->
+            <!--name="data"-->
+            <!--type="com.apollographql.apollo.sample.MyTracksQuery.Node2"/>-->
+
+        <!--&lt;!&ndash;<variable&ndash;&gt;-->
+            <!--&lt;!&ndash;name="progress"&ndash;&gt;-->
+            <!--&lt;!&ndash;type="Integer"/>&ndash;&gt;-->
+    <!--</data>-->
+
+<com.google.android.material.circularreveal.cardview.CircularRevealCardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
+    android:orientation="vertical"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="@dimen/_7sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_8sdp">
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:secondaryProgressTint="@android:color/transparent"
+            android:progressBackgroundTint="@android:color/transparent"
+            android:alpha=".4"
+            android:id="@+id/progress"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MyButtonStyle"
+            android:id="@+id/slug"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:includeFontPadding="false"
+            />
+
+        <TextView
+            android:id="@+id/lessonLevel"
+            style="@style/BoldTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="easy lesson"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:drawableStart="@drawable/ic_target"
+            android:drawablePadding="@dimen/_5sdp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/slug"
+            app:layout_constraintBottom_toBottomOf="@id/slug"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/sperator"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@id/slug"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_8sdp"/>
+        <TextView
+            android:id="@+id/title"
+            style="@style/BoldTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Beging"
+            android:textColor="#000"
+            android:paddingTop="@dimen/_5sdp"
+            android:textSize="19sp"
+            app:layout_constraintEnd_toStartOf="@id/startButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sperator" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/startButton"
+            style="@style/MyButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:text="@string/start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/description"
+             />
+
+        <TextView
+            android:id="@+id/description"
+            style="@style/BoldTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Beging sdf sd fas fasd f asdf asdf das sdf sdf sdf sdfsd"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@id/startButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+</layout>

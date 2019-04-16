@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.VERTICAL
+import androidx.recyclerview.widget.RecyclerView
 import com.apollographql.apollo.coroutines.toDeferred
 import com.apollographql.apollo.sample.MyTracksQuery
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -19,35 +19,32 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import raslan.learn.islam.MyApplication
+
 import raslan.learn.islam.R
 import raslan.learn.islam.adapters.MainTopicsAdapter
-import raslan.learn.islam.databinding.FragmentMainBinding
+import raslan.learn.islam.adapters.SubTopicsAdapter
+import raslan.learn.islam.databinding.FragmentSubTopicsBinding
 import raslan.learn.islam.util.AppPreference
 
 
-/**
- * A simple [Fragment] subclass.
- *
- */
-class MainFragment : Fragment() {
+class SubTopicsFragment : Fragment() {
     var job: Job? = null
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val binding = DataBindingUtil.inflate<FragmentMainBinding>(
-                inflater, R.layout.fragment_main, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
 
+        val binding = DataBindingUtil.inflate<FragmentSubTopicsBinding>(
+            inflater, R.layout.fragment_sub_topics, container, false)
 
         job = GlobalScope.launch(Dispatchers.Main) {
             try {
+
+                val position = arguments!!.getString("index").toInt()
                 val data = (requireActivity().applicationContext as MyApplication)
-                        .apolloClient.query(MyTracksQuery(AppPreference.lang)).toDeferred().await()
-                        .data()!!.allTracks()
-                val adapter = MainTopicsAdapter()
-                adapter.setItems(data!!.edges())
-                binding.recycler.layoutManager = LinearLayoutManager(activity, VERTICAL, false)
+                    .apolloClient.query(MyTracksQuery(AppPreference.lang)).toDeferred().await()
+                    .data()!!.allTracks()!!.edges()[0].node()!!.courseSet()!!.edges()
+                val adapter = SubTopicsAdapter()
+                adapter.setItems(data)
+                binding.recycler.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
                 binding.recycler.adapter = adapter
                 Log.i("main", data.toString())
             } catch (e: Exception) {

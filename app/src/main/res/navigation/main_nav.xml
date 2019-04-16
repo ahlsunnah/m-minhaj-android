@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            app:startDestination="@id/main_topics"
-            android:id="@+id/main_nav">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/main_topics">
 
     <fragment
-            android:id="@+id/main_topics"
-            android:name="raslan.learn.islam.fragments.MainFragment"
-            android:label="@string/main"
-            tools:layout="@layout/fragment_main">
+        android:id="@+id/main_topics"
+        android:name="raslan.learn.islam.fragments.MainTopicsFragment"
+        android:label="@string/main"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/toSubTopic"
+            app:destination="@id/sub_topics">
+            <argument
+                android:name="index"
+                app:argType="string" />
+        </action>
 
     </fragment>
 
+    <fragment
+        android:id="@+id/sub_topics"
+        android:name="raslan.learn.islam.fragments.SubTopicsFragment"
+        android:label="@string/lessons_list"
+        tools:layout="@layout/fragment_sub_topics">
+
+
+    </fragment>
 </navigation>
