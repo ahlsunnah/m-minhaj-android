@@ -85,6 +85,7 @@
 
     <style name="BoldTextView" parent="android:Widget.TextView">
         <item name="android:includeFontPadding">false</item>
+        <item name="android:textColorLink">@color/colorPrimaryDark</item>
     </style>
 
     <style name="NormalTextView" parent="android:Widget.TextView">

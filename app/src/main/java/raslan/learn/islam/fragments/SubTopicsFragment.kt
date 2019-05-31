@@ -33,15 +33,14 @@ class SubTopicsFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         val binding = DataBindingUtil.inflate<FragmentSubTopicsBinding>(
-            inflater, R.layout.fragment_sub_topics, container, false)
+                inflater, R.layout.fragment_sub_topics, container, false)
 
         job = GlobalScope.launch(Dispatchers.Main) {
             try {
-
                 val position = arguments!!.getString("index").toInt()
                 val data = (requireActivity().applicationContext as MyApplication)
-                    .apolloClient.query(MyTracksQuery(AppPreference.lang)).toDeferred().await()
-                    .data()!!.allTracks()!!.edges()[0].node()!!.courseSet()!!.edges()
+                        .apolloClient.query(MyTracksQuery(AppPreference.lang)).toDeferred().await()
+                        .data()!!.allTracks()!!.edges()[position].node()!!.courseSet()!!.edges()
                 val adapter = SubTopicsAdapter()
                 adapter.setItems(data)
                 binding.recycler.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)

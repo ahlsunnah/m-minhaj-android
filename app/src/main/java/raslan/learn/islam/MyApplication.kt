@@ -8,12 +8,12 @@ import com.apollographql.apollo.cache.normalized.CacheKey
 import com.apollographql.apollo.cache.normalized.CacheKeyResolver
 import com.apollographql.apollo.cache.normalized.sql.ApolloSqlHelper
 import com.apollographql.apollo.cache.normalized.sql.SqlNormalizedCacheFactory
-import okhttp3.OkHttpClient
 import raslan.learn.islam.util.AppPreference
 import android.provider.Settings.System.DATE_FORMAT
 import com.apollographql.apollo.response.CustomTypeValue
 import com.apollographql.apollo.response.CustomTypeAdapter
 import com.apollographql.apollo.sample.type.CustomType
+import raslan.learn.islam.config.Config
 import raslan.learn.islam.model.QuizData
 import java.text.ParseException
 
@@ -24,18 +24,8 @@ class MyApplication : Application() {
         super.onCreate()
         AppPreference.init(this)
     }
-    private val baseUrl = "https://learn-islam-api.herokuapp.com/graphql"
-    val apolloClient: ApolloClient by lazy {
-        val okHttpClient = OkHttpClient.Builder()
-//            .addNetworkInterceptor { chain ->
-//                val request = chain.request().newBuilder()
-//                    .addHeader("Authorization", "bearer ${BuildConfig.GITHUB_OAUTH_TOKEN}")
-//                    .build()
-//
-//                chain.proceed(request)
-//            }
-            .build()
 
+    val apolloClient: ApolloClient by lazy {
         val apolloSqlHelper = ApolloSqlHelper.create(this, "learn_islam")
         val sqlNormalizedCacheFactory = SqlNormalizedCacheFactory(apolloSqlHelper)
         val cacheKeyResolver = object : CacheKeyResolver() {
@@ -68,10 +58,10 @@ class MyApplication : Application() {
         }
 
         ApolloClient.builder()
-            .serverUrl(baseUrl)
+            .serverUrl(Config.URL)
             .normalizedCache(sqlNormalizedCacheFactory, cacheKeyResolver)
             .addCustomTypeAdapter(CustomType.JSONSTRING, dateCustomTypeAdapter)
-            .okHttpClient(okHttpClient)
+            //.okHttpClient(okHttpClient)
             .build()
     }
 }

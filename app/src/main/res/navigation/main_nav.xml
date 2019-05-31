@@ -23,9 +23,30 @@
     <fragment
         android:id="@+id/sub_topics"
         android:name="raslan.learn.islam.fragments.SubTopicsFragment"
-        android:label="@string/lessons_list"
+        android:label="{dynamicTitle}"
         tools:layout="@layout/fragment_sub_topics">
+        <argument
+            android:name="dynamicTitle"
+            app:argType="string" />
 
+        <action
+            android:id="@+id/toCourse"
+            app:destination="@id/course">
+            <argument
+                android:name="id"
+                app:argType="string" />
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/course"
+        android:name="raslan.learn.islam.fragments.CourseFragment"
+        android:label="{dynamicTitle}"
+        tools:layout="@layout/fragment_course">
+        <argument
+            android:name="dynamicTitle"
+            app:argType="string" />
 
     </fragment>
 </navigation>

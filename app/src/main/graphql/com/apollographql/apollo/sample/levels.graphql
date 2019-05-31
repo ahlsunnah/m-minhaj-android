@@ -98,3 +98,83 @@ query myTracks($locale: String!) {
     }
   }
 
+query getCourseData($id: ID!, $locale: String!){
+
+  course(id: $id){
+    chapterSet{
+      edges{
+        node{
+          audio
+          id
+          duration
+          translations (locale: $locale){
+            edges{
+              node{
+                title
+                id
+                transcription
+                video
+                vocabulary
+              }
+            }
+          }
+        }
+      }
+    }
+
+    quizSet{
+      edges{
+        node{
+          id
+          difficulty
+          translations(locale: $locale){
+            edges{
+              node{
+                id
+                data
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query getChapter($id: ID!, $locale: String!){
+  chapter (id: $id){
+    id
+    audio
+    duration
+    slug
+    translations(locale: $locale){
+      edges{
+        node{
+          title
+          transcription
+          video
+          vocabulary
+        }
+      }
+    }
+  }
+}
+
+query getQuiz($id: ID!, $locale: String!){
+  quiz(id: $id){
+    id
+    type
+    difficulty
+    translations(locale: $locale){
+      edges{
+        node{
+          id
+          data
+        }
+      }
+    }
+  }
+}
+
+
+

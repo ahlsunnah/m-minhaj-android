@@ -21,4 +21,9 @@
     <string name="start">ابدأ</string>
     <string name="easy_level">مستوى سهل</string>
     <string name="lessons_list">قائمة الدروس</string>
+    <string name="hard_level">مستوى صعب</string>
+    <string name="translation">الترجمة</string>
+    <string name="output">التفريغ</string>
+    <string name="sound_hint"><u>للإستماع وتحميل المادة الصوتية</u></string>
+    <string name="audio">التفريغ الصوتي</string>
 </resources>

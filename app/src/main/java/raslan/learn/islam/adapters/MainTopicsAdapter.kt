@@ -43,25 +43,29 @@ class MainTopicsAdapter : RecyclerView.Adapter<MainTopicsAdapter.ViewHolder>() {
             itemView.run {
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    description.text = Html.fromHtml(topics.node()!!.translations()!!.edges()[0].node()!!.description(), Html.FROM_HTML_MODE_COMPACT)
-                    title.text = Html.fromHtml(topics.node()!!.translations()!!.edges()[0].node()!!.title(), Html.FROM_HTML_MODE_COMPACT)
-                }else{
+                    description.text = Html.fromHtml(
+                            topics.node()!!.translations()!!.edges()[0].node()!!.description(),
+                            Html.FROM_HTML_MODE_COMPACT
+                    )
+                    title.text = Html.fromHtml(
+                            topics.node()!!.translations()!!.edges()[0].node()!!.title(),
+                            Html.FROM_HTML_MODE_COMPACT
+                    )
+                } else {
                     description.text = Html.fromHtml(topics.node()!!.translations()!!.edges()[0].node()!!.description())
                     title.text = Html.fromHtml(topics.node()!!.translations()!!.edges()[0].node()!!.title())
                 }
-                if (topics.node()!!.soon()){
+                if (topics.node()!!.soon()) {
                     startButton.text = context.getString(R.string.soon)
                     startButton.isEnabled = false
                 }
 
                 startButton.setOnClickListener {
-                    val direction = MainTopicsFragmentDirections.toSubTopic(position.toString())
-                    val navController : NavController = it.findNavController()
-                    navController.apply {
-                        navigate(direction)
-                        currentDestination!!.label = Html.fromHtml(topics.node()!!.translations()!!.edges()[0].node()!!.title())
-                    }
-
+                    val direction = MainTopicsFragmentDirections.toSubTopic(
+                            position.toString(),
+                            Html.fromHtml(topics.node()!!.translations()!!.edges()[0].node()!!.title()).toString()
+                    )
+                    it.findNavController().navigate(direction)
                 }
             }
         }
