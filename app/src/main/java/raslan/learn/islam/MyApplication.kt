@@ -14,7 +14,6 @@ import com.apollographql.apollo.response.CustomTypeValue
 import com.apollographql.apollo.response.CustomTypeAdapter
 import com.apollographql.apollo.sample.type.CustomType
 import raslan.learn.islam.config.Config
-import raslan.learn.islam.model.QuizData
 import java.text.ParseException
 
 

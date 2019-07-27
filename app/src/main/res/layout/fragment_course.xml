@@ -18,17 +18,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <!--<TextView-->
-            <!--android:id="@+id/next"-->
-            <!--style="@style/NormalTextView"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:drawableStart="@drawable/ic_arrow"-->
-            <!--android:drawablePadding="@dimen/_2sdp"-->
-            <!--android:padding="@dimen/_5sdp"-->
-            <!--android:text="@string/next"-->
-            <!--app:layout_constraintBottom_toBottomOf="@id/tabLayout"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="@id/tabLayout" />-->
+        <!--android:id="@+id/next"-->
+        <!--style="@style/NormalTextView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:drawableStart="@drawable/ic_arrow"-->
+        <!--android:drawablePadding="@dimen/_2sdp"-->
+        <!--android:padding="@dimen/_5sdp"-->
+        <!--android:text="@string/next"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/tabLayout"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="@id/tabLayout" />-->
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
@@ -44,6 +44,7 @@
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_40sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +60,25 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/sectionsSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_arrow_up" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <include layout="@layout/fragment_sections_list" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
