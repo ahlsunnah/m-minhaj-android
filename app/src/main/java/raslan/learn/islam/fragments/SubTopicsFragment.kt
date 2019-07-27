@@ -51,7 +51,7 @@ class SubTopicsFragment : Fragment() {
                 //tvError.text = e.localizedMessage
                 Toast.makeText(activity, e.localizedMessage, Toast.LENGTH_LONG).show()
             } finally {
-                progress.visibility = View.GONE
+               // progress.visibility = View.GONE
             }
         }
 

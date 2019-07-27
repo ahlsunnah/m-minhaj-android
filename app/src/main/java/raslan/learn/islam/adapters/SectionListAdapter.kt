@@ -25,7 +25,7 @@ public class SectionListAdapter(val lessonListener: LessonListener) : RecyclerVi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(data!![position], position)
         holder.itemView.item.setOnClickListener {
-            lessonListener.onLessonSelected(position)
+            lessonListener.onLessonSelected(position, data!![position].node()!!)
         }
     }
 

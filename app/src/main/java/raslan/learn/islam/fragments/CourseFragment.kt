@@ -38,6 +38,7 @@ import raslan.learn.islam.fragments.tabs.SoundFragment
 import raslan.learn.islam.fragments.tabs.TranslationFragment
 import raslan.learn.islam.util.AppPreference
 import raslan.learn.islam.util.LessonListener
+import raslan.learn.islam.util.LessonListenerHelper
 
 
 /**
@@ -49,6 +50,7 @@ class CourseFragment : Fragment(), LessonListener {
     var sectionsList: GetCourseDataQuery.Data? = null
     var currentIndex = 0;
     var binder: FragmentCourseBinding? = null
+    var fragment : SectionsListFragment? = null
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -57,7 +59,7 @@ class CourseFragment : Fragment(), LessonListener {
         val binding = DataBindingUtil.inflate<FragmentCourseBinding>(
                 inflater, R.layout.fragment_course, container, false
         )
-
+        LessonListenerHelper(this)
         binder = binding
         job = GlobalScope.launch(Dispatchers.Main) {
             try {
@@ -69,7 +71,7 @@ class CourseFragment : Fragment(), LessonListener {
                                 .build()
                 ).toDeferred().await()
                 sectionsList = data.data()
-                setCurrentLesson(data.data()!!, currentIndex)
+                setCurrentLesson(data.data()!!.course()!!.chapterSet()!!.edges()[currentIndex]!!.node()!!)
                 Log.i("main", data.data().toString())
             } catch (e: Exception) {
                 //tvError.visibility = View.VISIBLE
@@ -82,23 +84,20 @@ class CourseFragment : Fragment(), LessonListener {
         }
 
         binding.sectionsSheet.setOnClickListener {
-            SectionsListFragment().newInstance(sectionsList!!.course()!!.chapterSet()!!.edges())
-                    .show(fragmentManager!!, "TEST")
+            fragment = SectionsListFragment().newInstance(sectionsList!!.course()!!.chapterSet()!!.edges())
+
+            fragment!!.show(fragmentManager!!, "TEST")
         }
 
         return binding.root
     }
 
-    private fun setCurrentLesson(data: GetCourseDataQuery.Data, currentIndex: Int) {
-        val translation = data!!.course()!!.chapterSet()!!.edges()[currentIndex]!!
-                .node()!!.translations()!!.edges()[0].node()!!.transcription()
+    private fun setCurrentLesson(node: GetCourseDataQuery.Node) {
+        val translation = node!!.translations()!!.edges()[0].node()!!.transcription()
 
-        val output = data!!.course()!!.chapterSet()!!.edges()[currentIndex]!!
-                .node()!!.translations()!!.edges()[0].node()!!.vocabulary()
-        val audio = data!!.course()!!.chapterSet()!!.edges()[currentIndex]!!
-                .node()!!.audio()
-        var video = data!!.course()!!.chapterSet()!!.edges()[currentIndex]!!
-                .node()!!.translations()!!.edges()[0]!!.node()!!.video()
+        val output = node!!.translations()!!.edges()[0].node()!!.vocabulary()
+        val audio = node!!.audio()
+        var video = node.translations()!!.edges()[0]!!.node()!!.video()
 
         val fragmentList = ArrayList<Fragment>()
         val fragmentTitles = ArrayList<String>()
@@ -117,8 +116,7 @@ class CourseFragment : Fragment(), LessonListener {
         val adapter = TabsAdapter(childFragmentManager, fragmentList, fragmentTitles)
         binder!!.viewPager.adapter = adapter
         binder!!.tabLayout.setupWithViewPager(binder!!.viewPager)
-        //if (video.isEmpty())
-        video = "https://www.youtube.com/watch?v=HIRXw_k0Adw"
+        if (video.isNullOrEmpty()) video = "https://www.youtube.com/watch?v=HIRXw_k0Adw"
 
         binder!!.videoView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
@@ -139,8 +137,10 @@ class CourseFragment : Fragment(), LessonListener {
         job?.cancel()
     }
 
-    override fun onLessonSelected(position: Int) {
-        print(position)
+    public override fun onLessonSelected(position: Int, node: GetCourseDataQuery.Node) {
+        currentIndex = position
+        setCurrentLesson(node)
+        fragment!!.dismiss()
     }
 
 

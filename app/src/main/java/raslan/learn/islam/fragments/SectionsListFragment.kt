@@ -20,9 +20,10 @@ import raslan.learn.islam.adapters.SectionListAdapter
 import raslan.learn.islam.util.AppPreference
 import raslan.learn.islam.util.DataHelper
 import raslan.learn.islam.util.LessonListener
+import raslan.learn.islam.util.LessonListenerHelper
 import java.util.ArrayList
 
-class SectionsListFragment : BottomSheetDialogFragment(), LessonListener {
+class SectionsListFragment : BottomSheetDialogFragment() {
 
     fun newInstance(data: List<GetCourseDataQuery.Edge>): SectionsListFragment {
         val fragment = SectionsListFragment()
@@ -42,7 +43,7 @@ class SectionsListFragment : BottomSheetDialogFragment(), LessonListener {
 
         val data = arguments!!.getParcelable<DataHelper>("data")
 
-        val adapter = SectionListAdapter(this)
+        val adapter = SectionListAdapter(LessonListenerHelper.lessonListener())
         adapter.setItems(data.data)
         courseList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         courseList.adapter = adapter
@@ -54,8 +55,5 @@ class SectionsListFragment : BottomSheetDialogFragment(), LessonListener {
         return view;
     }
 
-//    override fun onLessonSelected(position: Int) {
-//        print(position)
-//    }
 
 }
