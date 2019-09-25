@@ -36,6 +36,7 @@ import raslan.learn.islam.databinding.FragmentCourseBinding
 import raslan.learn.islam.fragments.tabs.OutputTextFragment
 import raslan.learn.islam.fragments.tabs.SoundFragment
 import raslan.learn.islam.fragments.tabs.TranslationFragment
+import raslan.learn.islam.model.QuizData
 import raslan.learn.islam.util.AppPreference
 import raslan.learn.islam.util.LessonListener
 import raslan.learn.islam.util.LessonListenerHelper
@@ -71,6 +72,10 @@ class CourseFragment : Fragment(), LessonListener {
                                 .build()
                 ).toDeferred().await()
                 sectionsList = data.data()
+
+                val dd = data.data()!!.course()!!.quizSet()!!.edges()!![0].node()!!.translations()!!.edges()!![0].node()
+                 Log.i("quiz", " ".plus(dd.toString()))
+
                 setCurrentLesson(data.data()!!.course()!!.chapterSet()!!.edges()[currentIndex]!!.node()!!)
                 Log.i("main", data.data().toString())
             } catch (e: Exception) {
@@ -93,10 +98,10 @@ class CourseFragment : Fragment(), LessonListener {
     }
 
     private fun setCurrentLesson(node: GetCourseDataQuery.Node) {
-        val translation = node!!.translations()!!.edges()[0].node()!!.transcription()
+        val translation = node.translations()!!.edges()[0].node()!!.transcription()
 
-        val output = node!!.translations()!!.edges()[0].node()!!.vocabulary()
-        val audio = node!!.audio()
+        val output = node.translations()!!.edges()[0].node()!!.vocabulary()
+        val audio = node.audio()
         var video = node.translations()!!.edges()[0]!!.node()!!.video()
 
         val fragmentList = ArrayList<Fragment>()
@@ -137,7 +142,7 @@ class CourseFragment : Fragment(), LessonListener {
         job?.cancel()
     }
 
-    public override fun onLessonSelected(position: Int, node: GetCourseDataQuery.Node) {
+    override fun onLessonSelected(position: Int, node: GetCourseDataQuery.Node) {
         currentIndex = position
         setCurrentLesson(node)
         fragment!!.dismiss()

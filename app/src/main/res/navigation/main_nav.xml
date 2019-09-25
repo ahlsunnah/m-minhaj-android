@@ -49,4 +49,16 @@
             app:argType="string" />
 
     </fragment>
+
+
+    <fragment
+        android:id="@+id/settings"
+        android:name="raslan.learn.islam.fragments.SettingsFragment"
+        android:label="{dynamicTitle}"
+        tools:layout="@layout/fragment_settings">
+        <argument
+            android:name="dynamicTitle"
+            app:argType="string" />
+
+    </fragment>
 </navigation>
